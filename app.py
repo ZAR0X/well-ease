@@ -196,18 +196,16 @@ def submit():
     query = {
         "query": food_item,
     }
-    api_id = "API ID"
-    api_key = "API KEY"
 
     headers = {
-        "x-app-id": api_id,
-        "x-app-key": api_key,
+        "x-app-id": "66e88fcd",
+        "x-app-key": "915bd34e3996d68e870d3be75c07b467",
         "Content-Type": "application/json"
     }
 
     r = requests.post(end_pt_url, headers=headers, json=query)
     data = json.loads(r.text)
-
+    print(data)
     for food in data['foods']:
         name = food['food_name']
         cal = food['nf_calories']
