@@ -208,6 +208,10 @@ def logout():
 def home():
     return render_template("index.html")
 
+@app.route("/chat")
+def chat():
+    return render_template("chat.html")
+
 @app.route('/bmi_final')
 def bmi():
     return render_template('bmi_final.html')
@@ -224,53 +228,6 @@ def blog():
 def vid():
     return render_template('video.html')
 
-@app.route('/blog-post-1')
-def blog1():
-    return render_template('blog-post-1.html')
-
-@app.route('/video-post-1')
-def vid1():
-    return render_template('video-post-1.html')
-
-@app.route('/blog-post-2')
-def blog2():
-    return render_template('blog-post-2.html')
-
-@app.route('/video-post-2')
-def vid2():
-    return render_template('video-post-3.html')
-
-@app.route('/blog-post-3')
-def blog3():
-    return render_template('blog-post-3.html')
-
-@app.route('/video-post-3')
-def vid3():
-    return render_template('video-post-3.html')
-
-@app.route('/blog-post-4')
-def blog4():
-    return render_template('blog-post-4.html')
-
-@app.route('/video-post-4')
-def vid4():
-    return render_template('video-post-4.html')
-
-@app.route('/blog-post-5')
-def blog5():
-    return render_template('blog-post-5.html')
-
-@app.route('/video-post-5')
-def vid5():
-    return render_template('video-post-5.html')
-
-@app.route('/blog-post-6')
-def blog6():
-    return render_template('blog-post-6.html')
-
-@app.route('/video-post-6')
-def vid6():
-    return render_template('video-post-6.html')
 
 # Calorie Counter (meal)
 
