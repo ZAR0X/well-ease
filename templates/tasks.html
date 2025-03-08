@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link href="/static/css/profile.css" rel="stylesheet">
+</head>
+<body>
+{% block content %}
+<h1>Your Tasks</h1>
+<form method="POST" action="{{ url_for('tasks') }}">
+    <div>
+        <label for="description">Task Description:</label>
+        <input type="text" id="description" name="description" required>
+    </div>
+    <div>
+        <label for="time_of_day">Time of Day:</label>
+        <select id="time_of_day" name="time_of_day" required>
+            <option value="Morning">Morning</option>
+            <option value="Afternoon">Afternoon</option>
+            <option value="Evening">Evening</option>
+        </select>
+    </div>
+    <button type="submit">Add Task</button>
+</form>
+
+<h2>Your Task List</h2>
+<ul>
+    {% for task in tasks %}
+    <li>
+        {{ task.description }} - {{ task.time_of_day }}
+        {% if not task.completed %}
+        <form method="POST" action="{{ url_for('complete_task', task_id=task.id) }}" style="display:inline;">
+            <button type="submit">Mark as Completed</button>
+        </form>
+        {% else %}
+        <span>Completed</span>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+</body>

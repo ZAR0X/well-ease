@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link href="/static/css/profile.css" rel="stylesheet">
+</head>
+<body>
+{% block content %}
+<h1>Leaderboard</h1>
+
+<h2>Top 25 Users by Longest Streak</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Longest Streak</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in top_users %}
+        <tr>
+            <td>{{ user.username }}</td>
+            <td>{{ user.longest_streak }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>Weekly Streaks</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Longest Streak</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in weekly_streaks %}
+        <tr>
+            <td>{{ user.username }}</td>
+            <td>{{ user.longest_streak }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+</body>

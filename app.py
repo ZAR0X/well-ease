@@ -1,10 +1,8 @@
-### Integrate HTML With Flask
-### HTTP verb GET And POST
-
 import re
 import os
 import json
 import requests
+from datetime import datetime, timedelta
 
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
@@ -28,6 +26,30 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
 
+class Task(db.Model):
+    __tablename__ = 'tasks'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    description = db.Column(db.String(200), nullable=False)
+    time_of_day = db.Column(db.String(50), nullable=False)  # e.g., "Morning", "Afternoon", "Evening"
+    completed = db.Column(db.Boolean, default=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __repr__(self):
+        return f'<Task {self.description}>'
+
+# Streak Model
+class Streak(db.Model):
+    __tablename__ = 'streaks'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    start_date = db.Column(db.DateTime, default=datetime.utcnow)
+    end_date = db.Column(db.DateTime)
+    is_active = db.Column(db.Boolean, default=True)
+
+    def __repr__(self):
+        return f'<Streak {self.user_id}>'
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -45,6 +67,75 @@ def validate_password(password):
     """Validate password: minimum 8 characters."""
     return len(password) >= 8
 
+
+@app.route('/tasks', methods=['GET', 'POST'])
+@login_required
+def tasks():
+    if request.method == 'POST':
+        description = request.form.get('description')
+        time_of_day = request.form.get('time_of_day')
+
+        if not description or not time_of_day:
+            flash('Please fill out all fields.', 'danger')
+            return redirect(url_for('tasks'))
+
+        task = Task(user_id=current_user.id, description=description, time_of_day=time_of_day)
+        db.session.add(task)
+        db.session.commit()
+        flash('Task added successfully!', 'success')
+        return redirect(url_for('tasks'))
+
+    user_tasks = Task.query.filter_by(user_id=current_user.id).order_by(Task.created_at.desc()).all()
+    return render_template('tasks.html', tasks=user_tasks, user=current_user)
+
+@app.route('/complete_task/<int:task_id>', methods=['POST'])
+@login_required
+def complete_task(task_id):
+    task = Task.query.get_or_404(task_id)
+    if task.user_id != current_user.id:
+        flash('You do not have permission to complete this task.', 'danger')
+        return redirect(url_for('tasks'))
+
+    task.completed = True
+    db.session.commit()
+
+    # Check if the user has an active streak
+    active_streak = Streak.query.filter_by(user_id=current_user.id, is_active=True).first()
+    if active_streak:
+        active_streak.end_date = datetime.utcnow()
+        active_streak.is_active = False
+        db.session.commit()
+
+    # Start a new streak
+    new_streak = Streak(user_id=current_user.id)
+    db.session.add(new_streak)
+    db.session.commit()
+
+    flash('Task marked as completed!', 'success')
+    return redirect(url_for('tasks'))
+
+@app.route('/leaderboard')
+def leaderboard():
+    # Get top 25 users with the highest streaks
+    top_users = db.session.query(
+        User.username,
+        db.func.max(Streak.end_date - Streak.start_date).label('longest_streak')
+    ).join(Streak, User.id == Streak.user_id
+    ).group_by(User.id
+    ).order_by(db.desc('longest_streak')
+    ).limit(25).all()
+
+    # Get weekly streaks
+    weekly_streaks = db.session.query(
+        User.username,
+        db.func.max(Streak.end_date - Streak.start_date).label('longest_streak')
+    ).join(Streak, User.id == Streak.user_id
+    ).filter(Streak.start_date >= datetime.utcnow() - timedelta(days=7)
+    ).group_by(User.id
+    ).order_by(db.desc('longest_streak')
+    ).limit(25).all()
+
+    return render_template('leaderboard.html', top_users=top_users, weekly_streaks=weekly_streaks)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -117,71 +208,67 @@ def logout():
 def home():
     return render_template("index.html")
 
-@app.route('/index.html')
-def index():
-    return render_template('index.html')
-
-@app.route('/bmi_final.html')
+@app.route('/bmi_final')
 def bmi():
     return render_template('bmi_final.html')
 
-@app.route('/Calorie-Counter.html')
+@app.route('/Calorie-Counter')
 def CalCount():
     return render_template('Calorie-Counter.html')
 
-@app.route('/blog.html')
+@app.route('/blog')
 def blog():
     return render_template('blog.html')
 
-@app.route('/video.html')
+@app.route('/video')
 def vid():
     return render_template('video.html')
 
-@app.route('/blog-post-1.html')
+@app.route('/blog-post-1')
 def blog1():
     return render_template('blog-post-1.html')
 
-@app.route('/video-post-1.html')
+@app.route('/video-post-1')
 def vid1():
     return render_template('video-post-1.html')
 
-@app.route('/blog-post-2.html')
+@app.route('/blog-post-2')
 def blog2():
     return render_template('blog-post-2.html')
 
-@app.route('/video-post-2.html')
+@app.route('/video-post-2')
 def vid2():
     return render_template('video-post-3.html')
 
-@app.route('/blog-post-3.html')
+@app.route('/blog-post-3')
 def blog3():
     return render_template('blog-post-3.html')
 
-@app.route('/video-post-3.html')
+@app.route('/video-post-3')
 def vid3():
     return render_template('video-post-3.html')
 
-@app.route('/blog-post-4.html')
+@app.route('/blog-post-4')
 def blog4():
     return render_template('blog-post-4.html')
 
-@app.route('/video-post-4.html')
+@app.route('/video-post-4')
 def vid4():
     return render_template('video-post-4.html')
 
-@app.route('/blog-post-5.html')
+@app.route('/blog-post-5')
 def blog5():
     return render_template('blog-post-5.html')
 
-@app.route('/video-post-5.html')
+@app.route('/video-post-5')
 def vid5():
     return render_template('video-post-5.html')
 
-@app.route('/blog-post-6.html')
+@app.route('/blog-post-6')
 def blog6():
     return render_template('blog-post-6.html')
 
-@app.route('/video-post-6.html')
+@app.route('/video-post-6')
 def vid6():
     return render_template('video-post-6.html')
 
@@ -290,6 +377,5 @@ app.static_folder = 'static'
 
 if __name__=='__main__':
     with app.app_context():
-        db.drop_all()
         db.create_all()
     app.run(debug=True)
