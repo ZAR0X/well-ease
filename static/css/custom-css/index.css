@@ -61,10 +61,14 @@ body {
   letter-spacing: 0.05em;
   color: #FFFFFF;
   margin-bottom: 10px;
+  -webkit-text-stroke: 2px #b000b2;
 }
 
 .text__color {
-  color: #67c7be;
+  color: #b000b2;
+  stroke-width: 2px;
+  stroke: #0A0A0A;
+  -webkit-text-stroke: 2px white;
 }
 
 .btn {
@@ -245,7 +249,7 @@ body {
 }
 
 .register {
-  background-image: url('roller.jpg');
+  background-image: url('roller2.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -255,8 +259,8 @@ body {
 
 .register-overlay {
 
-  
-  content: 'roller.jpg';
+  background-image: url('roller2.jpg');
+  content: 'roller2.jpg';
   top: 0;
   left: 0;
   width: 100%;

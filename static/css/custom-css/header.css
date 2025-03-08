@@ -1,5 +1,5 @@
 header {
-  background: #99d9d3;
+  background:#99d9d3;
   padding: 0 8.75rem;
   z-index: 999;
   position: relative;
@@ -9,20 +9,22 @@ header {
 header .container-fluid {
   padding-left: 0px;
   padding-right: 0px;
+  
 }
 
-.navbar-nav .nav-link:hover {
-  background-color: #34b4a8 !important;
-  color: #ffffff;
-  border-radius: 40%;
+.navbar-nav .nav-link:hover{
+  background-color:#b000b2 !important;
+  color:#ffffff;
+  transform:scale(0.8);
+  
 }
 
 .navbar-light .navbar-nav .nav-link.active {
-  color: #67c7be !important;
+  color:#ffffff !important;
 }
 
 a.dropdown-item.active {
-  background-color: #330548 !important;
+  background-color: #67c7be !important;
 }
 
 .carousel .carousel-indicators .active {
@@ -44,7 +46,7 @@ header nav ul li a {
 }
 
 header {
-  background: #99d9d3;
+  background:#552c55;
   opacity: 100;
 }
 
