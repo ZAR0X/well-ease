@@ -97,19 +97,19 @@ body {
     text-align: center;
     font-size: 14px;
     font-weight: bold;
+    color: white;
 }
 
 /* Sent and Received Messages */
 .received {
     align-self: flex-start;
     background: linear-gradient(to right, #f87cef, #bc22b1);
-    color: black;
 }
 
 .sent {
     align-self: flex-end;
     background: linear-gradient(to right, #f87cef, #bc22b1);
-    color: black;
+
 }
 
 /* Footer */
