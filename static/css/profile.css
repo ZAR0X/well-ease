@@ -1,7 +1,7 @@
 /* General Styling */
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom, #4FC3F7, #E3F2FD);
+    background: linear-gradient(to bottom, #b000b2, #E3F2FD);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,12 +12,12 @@ body {
 
 header h1 {
     font-size: 40px;
-    color: #1565C0;
+    color: white;
     margin: 0;
 }
 
 header p {
-    color: #555;
+    color: white;
     font-size: 15px;
     text-align: center;
 }
@@ -165,7 +165,7 @@ input[type="text"], select {
 }
 
 button {
-    background-color: purple;
+    background-color: #1565C0;
     color: white;
     padding: 10px 20px;
     border: none;

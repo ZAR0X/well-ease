@@ -1,0 +1,81 @@
+body {
+    background-color: #4B2354; /* Dark purple background to match BMI page */
+    color: #FFFFFF; /* White text for visibility */
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+h1, h2 {
+    color: white; /* Purple gradient tone for headings */
+}
+
+form {
+    background-color: #6A317B; /* Slightly lighter purple for forms */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 900px;
+    height: 250px;
+}
+
+div {
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #D8BFD8; /* Soft lavender for text labels */
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #A166C6; /* Vibrant purple for buttons */
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    
+}
+
+button:hover {
+    background-color: #8A2BE2; /* Darker purple for hover effect */
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    width: 300px;
+}
+
+li {
+    background-color: #6A317B;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 900px;
+    
+}
+.POST{
+    background-color: #6A317B; /* Slightly lighter purple for forms */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 200px;
+    height: 110px;
+}

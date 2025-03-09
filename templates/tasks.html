@@ -16,11 +16,12 @@
     <link href="/static/css/font-awesome.min.css" rel="stylesheet">
     <link href="/static/css/preloader.min.css" rel="stylesheet">
     <link href="/static/css/chat.css" rel="stylesheet">
+    <link href="/static/css/task.css" rel="stylesheet">
     <link href="/static/css/style.css" rel="stylesheet">
     <!-- CSS Skin File -->
     <link href="/static/css/skin.css" rel="stylesheet">
     <!-- Custom CSS for Tasks Page -->
-    <link href="/static/css/profile.css" rel="stylesheet">
+   
     <!-- Favicons -->
     <link rel="shortcut icon" href="/static/img/favicon.png" type="image/x-icon">
     <!-- Live Style Switcher - demo only -->
@@ -125,7 +126,7 @@
             <li>
                 {{ task.description }} - {{ task.time_of_day }}
                 {% if not task.completed %}
-                <form method="POST" action="{{ url_for('complete_task', task_id=task.id) }}" style="display:inline;">
+                <form  class="POST" action="{{ url_for('complete_task', task_id=task.id) }}" style="display:inline;">
                     <button type="submit">Mark as Completed</button>
                 </form>
                 {% else %}

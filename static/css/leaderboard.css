@@ -1,0 +1,48 @@
+body {
+    background-color: #4B2354; /* Dark purple background */
+    color: #FFFFFF; /* White text for readability */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+h1, h2 {
+    color: white; /* Vibrant purple tone for headings */
+}
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+    background-color: #6A317B; /* Slightly lighter purple */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+}
+
+thead {
+    background-color: #A166C6; /* Vibrant purple for headers */
+}
+
+td, th {
+    padding: 12px 15px;
+    text-align: center;
+    border: 1px solid #D8BFD8; /* Soft lavender borders */
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #5A2A67; /* Darker purple for alternate rows */
+}
+
+tbody tr:hover {
+    background-color: #8A2BE2; /* Highlight effect on hover */
+}
+
+th {
+    color: #FFFFFF;
+    font-weight: bold;
+}

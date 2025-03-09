@@ -1,0 +1,45 @@
+body {
+    background-color: #4B2354; /* Dark purple background */
+    color: #FFFFFF; /* White text for readability */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+h2 {
+    color: white; /* Vibrant purple tone for headings */
+}
+
+.profile-container {
+    background-color: #6A317B; /* Slightly lighter purple for content container */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    height: 650px;
+    margin-right: 100px;
+    width: 1000px;
+}
+
+p {
+    margin: 10px 0;
+    color: #D8BFD8; /* Soft lavender for text */
+}
+
+a {
+    display: inline-block;
+    background-color: #A166C6;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+a:hover {
+    background-color: #8A2BE2; /* Darker purple for hover effect */
+}
