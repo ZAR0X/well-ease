@@ -30,16 +30,6 @@ p {
     color: #D8BFD8; /* Soft lavender for text */
 }
 
-a {
-    display: inline-block;
-    background-color: #A166C6;
-    color: #FFFFFF;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    margin-top: 10px;
-}
-
 a:hover {
     background-color: #8A2BE2; /* Darker purple for hover effect */
 }

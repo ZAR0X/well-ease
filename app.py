@@ -227,13 +227,6 @@ def bmi_final():
 def CalCount():
     return render_template('Calorie-Counter.html')
 
-@app.route('/blog')
-def blog():
-    return render_template('blog.html')
-
-@app.route('/video')
-def vid():
-    return render_template('video.html')
 
 
 # Calorie Counter (meal)
