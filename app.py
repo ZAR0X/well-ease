@@ -214,8 +214,13 @@ def home():
 def chat():
     return render_template("chat.html")
 
+
+# @app.route('/bmi')
+# def bmi():
+#     return render_template('bmi.html')
+
 @app.route('/bmi_final')
-def bmi():
+def bmi_final():
     return render_template('bmi_final.html')
 
 @app.route('/Calorie-Counter')
