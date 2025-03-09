@@ -3,6 +3,7 @@ import os
 import json
 import requests
 from datetime import datetime, timedelta
+from dotenv import load_dotenv
 
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
@@ -10,8 +11,9 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 
 app=Flask(__name__)
 
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'fallback_secret_key')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://zarox:newnew@localhost/flask_auth'
+load_dotenv()
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'fallback_secret_key')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DB_URI")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -333,6 +335,6 @@ def calculate_calories_burnt():
 app.static_folder = 'static'
 
 if __name__=='__main__':
-    # with app.app_context():
-    #     db.create_all()
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)
